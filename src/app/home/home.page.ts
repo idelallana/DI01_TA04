@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  ToastController, IonFooter,IonInput, IonItem, IonList, IonLabel, IonListHeader,} from '@ionic/angular/standalone';
+  ToastController, IonFooter,IonInput, IonItem, IonList, IonLabel, IonButton,} from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { Elemento } from '../models/elemento.model';
 
@@ -13,7 +13,7 @@ import { Elemento } from '../models/elemento.model';
   //TODO añade los componentes de Ionic y FormsModule a imports
   imports: [
     IonHeader, IonToolbar, IonTitle, IonContent, 
-    FormsModule, IonFooter, IonInput, IonItem, IonList, IonLabel, IonListHeader,
+    FormsModule, IonFooter, IonInput, IonItem, IonList, IonLabel, IonButton,
   ],
 })
 export class HomePage {
@@ -42,16 +42,28 @@ export class HomePage {
 
   // TODO (Apartado 3 – Two-way Binding): Filtra los elementos según this.busqueda
   get elementosFiltrados(): Elemento[] {
+    return this.elementos.filter(elemento =>
+      elemento.titulo.toLowerCase().includes(this.busqueda.toLowerCase())
+    );
     // Implementa el filtro (this.elementos.filter): devuelve solo los elementos cuyo nombre
     // incluya el texto de this.busqueda (ignorando mayúsculas/minúsculas -> .toLowerCase())
-    return this.elementos;
   }
 
   // TODO Modificar el constructor para inyectar Router y ToastController con inject
-  constructor(private router: Router, private toastController: ToastController) {}
+  // Modifico import { Component } from '@angular/core'; añadiendo "inject"
+  private router = inject(Router);
+  private toastController = inject(ToastController);
+
+  constructor() {}
 
   // TODO (Apartado 1 + 3 – Event Binding): Mostrar un ion-toast al pulsar el botón
   async mostrarToast(): Promise<void> {
+    const toast = await this.toastController.create({
+      message: 'Mostrar mensaje',
+      duration: 2000,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
     // Consulta la teoría: apartado "ion-toast vs ion-alert"    
   }
-}
