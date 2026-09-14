@@ -59,7 +59,7 @@ export class HomePage {
   // TODO (Apartado 1 + 3 – Event Binding): Mostrar un ion-toast al pulsar el botón
   async mostrarToast(): Promise<void> {
     const toast = await this.toastController.create({
-      message: 'Mostrar mensaje',
+      message: 'Lista de libros cargada correctamente',
       duration: 2000,
       position: 'bottom'
     });
