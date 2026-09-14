@@ -51,7 +51,6 @@ export class HomePage {
 
   // TODO Modificar el constructor para inyectar Router y ToastController con inject
   // Modifico import { Component } from '@angular/core'; añadiendo "inject"
-  private router = inject(Router);
   private toastController = inject(ToastController);
 
   constructor() {}
