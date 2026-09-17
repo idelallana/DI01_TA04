@@ -8,10 +8,10 @@
   <ion-toolbar>
     <ion-title>
       <!-- TODO: Escribe aquí el nombre de tu aplicación -->
-       Mi aplicación
+      Mi aplicación
     </ion-title>
   </ion-toolbar>
- </ion-header>
+</ion-header>
 
 <ion-content [fullscreen]="true">
 
@@ -22,10 +22,10 @@
        Referencia de la teoría (apartado 3 – Two-way Binding):
          <ion-input [(ngModel)]="nombre"></ion-input>
   -->
-<ion-item>
-<ion-input placeholder="Buscar elemento" [(ngModel)]="busqueda">
-</ion-input>
-</ion-item>
+  <ion-item>
+    <ion-input placeholder="Buscar elemento" [(ngModel)]="busqueda"></ion-input>
+  </ion-item>
+
   <!-- TODO (Apartado 1 + 2 + 3):
        Lista de elementos.
        - Usa <ion-list> como contenedor.
@@ -45,18 +45,21 @@
            </ion-item>
          </ion-list>
   -->
+  <ion-list>
+    <!--Nombre de la variable temporal "libros", cada elemento individual dentro del bucle-->
+    @for (libros of elementosFiltrados; track libros.id) {
+      <!--Llamada al método verDetalle-->
+      <ion-item (click)="verDetalle(libros)" detail="true" button="true">
+        <ion-label>
+          <h2>{{ libros.titulo }}</h2>
+          <p>{{ libros.escritora }} — {{ libros.categoria }} — {{ libros.editorial }}</p>
+        </ion-label>
+      </ion-item>
+    } @empty {
+      <p>No hay resultados.</p>
+    }
+  </ion-list>
 
-<ion-list>
-  <!--Nombre de la variable temporal "libros", cada elemento individual dentro del bucle-->
-  @for (libros of elementosFiltrados; track libros.id) {
-    <ion-item>
-      <ion-label>
-        <h2>{{ libros.titulo }}</h2>
-        <p>{{ libros.escritora }} — {{ libros.categoria }} — {{ libros.editorial }}</p>
-      </ion-label>
-    </ion-item>
-  }
-</ion-list>
   <!-- TODO (Apartado 1 + 3 – Event Binding + Property Binding):
        Añadir un <ion-button> que:
        · Al pulsarlo llame a mostrarToast()
@@ -65,7 +68,8 @@
        Referencia de la teoría (apartado 3 – Event Binding y Property Binding):
          <ion-button [disabled]="!formValido" (click)="guardar()">Guardar</ion-button>
   -->
- <ion-button expand="block" [disabled]="!hayElementos" (click)="mostrarToast()">Mostrar mensaje</ion-button>
+  <ion-button expand="block" [disabled]="!hayElementos" (click)="mostrarToast()">Mostrar mensaje</ion-button>
+
 </ion-content>
 
 <!-- TODO (Apartado 1): Añadir ion-footer con ion-toolbar e ion-title informativo -->

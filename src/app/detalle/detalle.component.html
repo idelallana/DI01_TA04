@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ elementoDetalle?.titulo }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (elementoDetalle) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ elementoDetalle.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Categoría: {{ elementoDetalle.categoria }}</p>
+        <p>Escritora: {{ elementoDetalle.escritora }}</p>
+        <p>Editorial: {{ elementoDetalle.editorial }}</p>
+      </ion-card-content>
+    </ion-card>
+  } @else {
+    <p>No se ha encontrado el libro.</p>
+  }
+</ion-content>
