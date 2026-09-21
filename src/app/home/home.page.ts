@@ -29,11 +29,11 @@ export class HomePage {
     { id: 4, titulo: 'La biblioteca de la Medianoche', categoria: 'Novela contemporánea', escritora: 'Matt Haig', editorial: 'Alianza Editorial' },
     { id: 5, titulo: 'El descontento', categoria: 'Novela contemporánea', escritora: 'Beatriz Serrano', editorial: 'Temas de Hoy' },
   ]);
-
-  // TODO (Apartado 3 – Property Binding): Devuelve true si hay elementos en la lista
-  // Computed: true si hay elementos en la lista
- // Computed: true si hay elementos en la lista
-  hayElementos = computed(() => this.elementos().length > 0);
+// TODO (Apartado 3 – Property Binding): Devuelve true si hay elementos en la lista
+// Computed: true si hay elementos en la lista
+// Computed: true si hay elementos en la lista
+// Computed es una función que devuelve un valor derivado de signals. 
+hayElementos = computed(() => this.elementos().length > 0);
 
   // Computed: filtra elementos según el texto de búsqueda
   elementosFiltrados = computed<Elemento[]>(() => {
