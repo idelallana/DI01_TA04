@@ -1,12 +1,12 @@
 <!--
-  TAREA TA01 – HomePage
+  TAREA TA04 – HomePage
   Implementa los TODOs siguiendo los apartados indicados en la teoría.
 -->
 
 <!-- TODO (Apartado 1): Encabezado con ion-header, ion-toolbar e ion-title -->
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+      <ion-title>
       <!-- TODO: Escribe aquí el nombre de tu aplicación -->
       Mi aplicación
     </ion-title>
@@ -23,7 +23,11 @@
          <ion-input [(ngModel)]="nombre"></ion-input>
   -->
   <ion-item>
-    <ion-input placeholder="Buscar elemento" [(ngModel)]="busqueda"></ion-input>
+    <ion-input
+      placeholder="Buscar elemento"
+      [value]="busqueda()"
+      (ionInput)="busqueda.set($event.detail.value ?? '')">
+    </ion-input>
   </ion-item>
 
   <!-- TODO (Apartado 1 + 2 + 3):
@@ -47,7 +51,7 @@
   -->
   <ion-list>
     <!--Nombre de la variable temporal "libros", cada elemento individual dentro del bucle-->
-    @for (libros of elementosFiltrados; track libros.id) {
+    @for (libros of elementosFiltrados(); track libros.id) {
       <!--Llamada al método verDetalle-->
       <ion-item (click)="verDetalle(libros)" detail="true" button="true">
         <ion-label>
@@ -68,13 +72,13 @@
        Referencia de la teoría (apartado 3 – Event Binding y Property Binding):
          <ion-button [disabled]="!formValido" (click)="guardar()">Guardar</ion-button>
   -->
-  <ion-button expand="block" [disabled]="!hayElementos" (click)="mostrarToast()">Mostrar mensaje</ion-button>
+  <ion-button expand="block" [disabled]="!hayElementos()" (click)="mostrarToast()">Mostrar mensaje</ion-button>
 
 </ion-content>
 
 <!-- TODO (Apartado 1): Añadir ion-footer con ion-toolbar e ion-title informativo -->
 <ion-footer>
   <ion-toolbar>
-    <ion-title>Tarea de aprendizaje 03</ion-title>
+    <ion-title>Tarea de aprendizaje 04</ion-title>
   </ion-toolbar>
 </ion-footer>
